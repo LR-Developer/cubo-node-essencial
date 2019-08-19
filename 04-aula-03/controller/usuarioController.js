@@ -1,5 +1,6 @@
 import express from 'express'
 import usuarioService from '../service/usuarioService'
+import produtoService from '../service/produtoService'
 import { check, validationResult } from 'express-validator/check'
 import helper from './controllerHelper'
 
@@ -27,6 +28,10 @@ router.get('/', (req, res, next) => {
 
 router.get('/:id', (req, res) => {
     usuarioService.buscarPorId(req.params.id, res).catch(err => next(err))
+})
+
+router.get('/:id/produtos', (req, res, next) => {
+    produtoService.buscarPorUsuario(req.params.id, res).catch(err => next(err))
 })
 
 router.put('/:id', (req, res) => {
